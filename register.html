@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles/main_style.css">
+        <title>Register</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>
+        <script src="jquery.validate.js"></script>
+        
+        <script>
+            function validate(){
+                var username = $("#username").val();
+                var password = $("#password").val();
+                var confirm_password = $("#confirm_password").val();
+                
+                if (username==""){
+                    alert("Please enter your username.");
+                    return false;
+                }else if (password==""){
+                    alert("Please enter you password.");
+                    return false;
+                }else if (confirm_password==""){
+                    alert("Please re-type the password.");
+                    return false;
+                }else if (password!=confirm_password){
+                    alert("Password does not match.");
+                    return false;
+                }else if(/.{8,12}$/.test(password)==false){
+                    alert("Your password should be 8-12 in length.");
+                    return false;
+                }else if(/[a-z]+/.test(password)==false){
+                    alert("Your password should contains at least 1 lowercase letter.");
+                    return false;
+                }else if(/[A-Z]+/.test(password)==false){
+                    alert("Your password should contains at least 1 uppercase letter.");
+                    return false;
+                }else if(/[0-9]+/.test(password)==false){
+                    alert("Your password should contains at least 1 number.");
+                    return false;
+                }else if(/[~!#$]+/.test(password)==false){
+                    alert("Your password should contains one of the following special characters~!#$.");
+                    return false;
+                }else {
+                    return true;
+                }
+            }
+        </script>
+    </head>
+    
+    <body>
+        <div id="div1">
+            <nav>
+                <ul>
+                    <div id="logo">
+                        <li><a href="index.html"><img src="images/logo.png" height="50px"></a></li>
+                    </div>
+                    <div id="nav">
+                        <li style="float: right"><a href="log_on.php">Log on</a></li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    
+        <div id="register">
+        <form method="POST" action="register.php" onsubmit="return validate();">
+            <p>Welcome!</p>
+                Name<br>
+                <input id="username" type="text" name="username"><br>
+                Password<br>
+                <input id="password" name="password" type="password"><br>
+                Confirm password<br>
+                <input id="confirm_password" name="confirm_password" type="password"><br>
+                Mobile<br>
+                <input id="mobile" type="text" name="mobile"><br>
+                E-mail<br>
+                <input id="email" type="email" name="email"><br>
+                <br>
+                <input class="submit" value="submit" type="submit">
+        </form>
+        </div>
+    </body>
+</html>
